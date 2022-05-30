@@ -1,5 +1,5 @@
 import axios from "axios";
-import { DOMAIN, TOKEN_CYBER } from "../../util/setting";
+import { DOMAIN, TOKEN_ACCESS, TOKEN_CYBER } from "../../util/setting";
 
 export class baseService {
   //put json về phía backend

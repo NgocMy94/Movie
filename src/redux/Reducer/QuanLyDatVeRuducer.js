@@ -20,7 +20,7 @@ export const QuanLyDatVeReducer = (state = stateDefault, action) => {
         (gheDD) => gheDD.maGhe === action.gheDuocChon.maGhe
       );
 
-      if (index != -1) {
+      if (index !== -1) {
         danhSachGheCapNhat.splice(index, 1);
       } else {
         danhSachGheCapNhat.push(action.gheDuocChon);

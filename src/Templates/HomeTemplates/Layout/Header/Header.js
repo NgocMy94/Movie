@@ -40,12 +40,12 @@ export default function Header(props) {
               </NavLink>
             </li>
           </ul>
-        </div>
-        <div>
-          <NavLink to="/login" className="btn btn-danger">
-            Sign In
-          </NavLink>
-          <button className="btn btn-success ml-3">Sign Up</button>
+          <div className="ml-auto">
+            <NavLink to="/login" className="btn btn-danger">
+              Sign In
+            </NavLink>
+            <button className="btn btn-success ml-3">Sign Up</button>
+          </div>
         </div>
       </nav>
     </div>

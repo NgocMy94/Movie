@@ -14,7 +14,7 @@ export const layChiTietPhongVeAction = (maLichChieu) => {
           chiTietPhongVe: result.data.content,
         });
       }
-      console.log(result);
+      // console.log(result);
     } catch (error) {
       console.log(error.reponse?.data);
     }
@@ -27,7 +27,7 @@ export const datVeAction = (thongTinDatVe = new ThongTinDatVe()) => {
       const result = await quanLyDatVeService.datVe(thongTinDatVe);
       console.log(result.data.content);
     } catch (error) {
-      console.log("errors", error);
+      console.log("errors", error.reponse?.data);
     }
   };
 };
