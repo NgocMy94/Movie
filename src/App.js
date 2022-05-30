@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { createBrowserHistory } from "history";
+import { BrowserRouter, Route } from "react-router-dom";
+import { HomeTemplates } from "./Templates/HomeTemplates/HomeTemplates";
+import Home from "./Pages/Home/Home";
+import Contact from "./Pages/Contact/Contact";
+import New from "./Pages/New/New";
+import Login from "./Pages/Login/Login";
+import Register from "./Pages/Register/Register";
+import Detail from "./Pages/Detail/Detail";
+import Checkout from "./Pages/Checkout/Checkout";
+import React, { Suspense } from "react";
+import CheckoutTemplate from "./Templates/CheckoutTemplates/CheckoutTemplates";
+import { UserTemplates } from "./Templates/UserTemplates/UserTemplates";
+
+// const CheckoutTemplate = React.lazy(() =>
+//   import("./Templates/CheckoutTemplates/CheckoutTemplates")
+// );
+export const history = createBrowserHistory();
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <HomeTemplates path="/" exact component={Home} />
+      <HomeTemplates path="/home" exact component={Home} />
+      <HomeTemplates path="/contact" exact component={Contact} />
+      <HomeTemplates path="/new" exact component={New} />
+      <HomeTemplates path="/detail/:id" exact component={Detail} />
+      <CheckoutTemplate path="/checkout/:id" exact component={Checkout} />
+      {/* <Suspense fallback={<h1>LOADING...</h1>}>
+        <CheckoutTemplate path="/checkout/:id" exact component={Checkout} />
+      </Suspense> */}
+
+      <UserTemplates path="/login" exact component={Login} />
+      <Route path="/register" exact component={Register} />
+    </BrowserRouter>
   );
 }
 
