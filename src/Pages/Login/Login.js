@@ -29,12 +29,8 @@ export default function Login(props) {
         formik.handleSubmit(even);
       }}
       className="lg:w-1/2 xl:max-w-screen-sm"
-      style={{ backgroundColor: "#343a40 " }}
     >
-      <div
-        style={{ backgroundColor: "#343a40 " }}
-        className="py-12 bg-indigo-100 lg:bg-white flex justify-center lg:justify-start lg:px-12"
-      >
+      <div className="py-12 bg-indigo-100 lg:bg-white flex justify-center lg:justify-start lg:px-12">
         <div className="cursor-pointer flex items-center">
           <div>
             <NavLink to="/home">
@@ -62,7 +58,7 @@ xl:text-bold"
               <input
                 name="taiKhoan"
                 onChange={formik.handleChange}
-                className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
+                className="w-full text-lg py-2 pl-4 mt-2 rounded-xl border-b focus:outline-none focus:border-indigo-500"
                 placeholder="Nhập Tài Khoản"
               />
             </div>
@@ -72,23 +68,24 @@ xl:text-bold"
                   Password
                 </div>
                 <div>
-                  <a
+                  <NavLink
+                    to="/register"
                     className="text-xs font-display font-semibold text-indigo-600 hover:text-indigo-800
                     cursor-pointer"
                   >
                     Quên Mật Khẩu ?
-                  </a>
+                  </NavLink>
                 </div>
               </div>
               <input
                 type="password"
                 name="matKhau"
                 onChange={formik.handleChange}
-                className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
+                className="w-full text-lg py-2 border-b mt-2 pl-4 rounded-xl border-gray-300 focus:outline-none focus:border-indigo-500"
                 placeholder="Nhập Mật Khẩu"
               />
             </div>
-            <div className="mt-10">
+            <div className="mt-5">
               <button
                 className="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide
             font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
@@ -98,13 +95,13 @@ xl:text-bold"
               </button>
             </div>
           </div>
-          <div className="mt-12 text-sm font-display font-semibold text-gray-700 text-center">
-            Đăng Ký ?{" "}
+          <div className="mt-5 text-sm font-display font-semibold text-gray-700 text-center">
+            Bạn Chưa Có Tài Khoản
             <NavLink
               to="/register"
               className="cursor-pointer text-indigo-600 hover:text-indigo-800"
             >
-              Đăng Nhập
+              Đăng Ký
             </NavLink>
           </div>
         </div>

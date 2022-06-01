@@ -9,6 +9,8 @@ import "antd/dist/antd.css";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+//Import đa ngôn ngữ
+import i18n from "./i18n";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>

@@ -1,17 +1,19 @@
 import React, { Fragment, useEffect } from "react";
-import { render } from "react-dom";
+
 import { useDispatch, useSelector } from "react-redux";
 import { layChiTietPhongVeAction } from "../../redux/Action/QuanLyDatVeAction";
 import style from "./Checkout.module.css";
 import { CloseOutlined } from "@ant-design/icons";
 import "./Checkout.css";
 import { DAT_VE } from "../../redux/Types/QuanLyDatVeType";
-import { sortBy } from "lodash";
+import { sortBy, isEmpty } from "lodash";
 import { ThongTinDatVe } from "../../_Cores/Models/ThongTinDatVe";
 import { datVeAction } from "../../redux/Action/QuanLyDatVeAction";
-import Header from "../../Templates/HomeTemplates/Layout/Header/Header";
+import { Tabs } from "antd";
+import { NavLink } from "react-router-dom";
+const { TabPane } = Tabs;
 
-export default function Checkout(props) {
+function Checkout(props) {
   const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
   const { chiTietPhongVe, danhSachGheDangDat } = useSelector(
     (state) => state.QuanLyDatVeReducer
@@ -37,7 +39,7 @@ export default function Checkout(props) {
       let indexGheDD = danhSachGheDangDat.findIndex(
         (gheDD) => gheDD.maGhe === ghe.maGhe
       );
-      if (indexGheDD != -1) {
+      if (indexGheDD !== -1) {
         classDaDat = "gheDangDat";
       }
       return (
@@ -70,8 +72,13 @@ export default function Checkout(props) {
                 className="bg-black "
                 style={{ width: "80%", height: "10px" }}
               ></div>
-              <div className={`${style["trapezoid"]} text-center`}>
-                <h3 className="mt-3 text-white">Màng Hình</h3>
+              <div className={`${style["trapezoid"]} `}>
+                <h3
+                  className="text-white text-center"
+                  style={{ lineHeight: "30px" }}
+                >
+                  Màng Hình
+                </h3>
               </div>
               <div className="">{renderGhe()}</div>
             </div>
@@ -173,4 +180,46 @@ export default function Checkout(props) {
       </div>
     </div>
   );
+}
+
+const callblack = (key) => {
+  console.log(key);
+};
+
+export default function CheckoutTab(props) {
+  const { userLogin } = useSelector((state) => state.QuanLyDatVeReducer);
+  const operations = (
+    <Fragment>
+      {!isEmpty(userLogin) ? (
+        <NavLink to="/profile" className="btn btn-danger">
+          {userLogin.taiKhoan}
+          <div className="rounded-full">{userLogin.taiKhoan}</div>
+        </NavLink>
+      ) : (
+        " "
+      )}
+    </Fragment>
+  );
+
+  return (
+    <div className="bg-secondary ">
+      <div className="container">
+        <Tabs
+          tabBarExtraContent={operations}
+          defaultActiveKey="1"
+          onChange={callblack}
+        >
+          <TabPane tab="01 CHỌN GHẾ & THANH TOÁN" key="1">
+            <Checkout {...props} />
+          </TabPane>
+          <TabPane tab="02 KẾT QUẢ ĐẶT VÉ " key="2">
+            <KetQuaDatVe {...props} />
+          </TabPane>
+        </Tabs>
+      </div>
+    </div>
+  );
+}
+function KetQuaDatVe(props) {
+  return;
 }

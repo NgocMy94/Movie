@@ -12,6 +12,7 @@ import Checkout from "./Pages/Checkout/Checkout";
 import React, { Suspense } from "react";
 import CheckoutTemplate from "./Templates/CheckoutTemplates/CheckoutTemplates";
 import { UserTemplates } from "./Templates/UserTemplates/UserTemplates";
+import Profile from "./Profile/Profile";
 
 // const CheckoutTemplate = React.lazy(() =>
 //   import("./Templates/CheckoutTemplates/CheckoutTemplates")
@@ -30,9 +31,9 @@ function App() {
       {/* <Suspense fallback={<h1>LOADING...</h1>}>
         <CheckoutTemplate path="/checkout/:id" exact component={Checkout} />
       </Suspense> */}
-
+      <HomeTemplates path="/profile" exact component={Profile} />
       <UserTemplates path="/login" exact component={Login} />
-      <Route path="/register" exact component={Register} />
+      <UserTemplates path="/register" exact component={Register} />
     </BrowserRouter>
   );
 }

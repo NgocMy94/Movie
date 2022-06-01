@@ -1,4 +1,3 @@
-import { cond } from "lodash";
 import { ThongTinDatVe } from "../../_Cores/Models/ThongTinDatVe";
 import { quanLyDatVeService } from "../Service/QuanLyDatVeService";
 import { SET_CHI_PHONG_VE } from "../Types/QuanLyDatVeType";

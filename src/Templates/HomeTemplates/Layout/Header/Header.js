@@ -1,7 +1,38 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { NavLink } from "react-router-dom";
+import { Select } from "antd";
+//Hook đa ngôn ngữ
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { isEmpty } from "lodash";
+const { Option } = Select;
 
 export default function Header(props) {
+  const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
+  const renderLogin = () => {
+    if (isEmpty(userLogin)) {
+      return (
+        <Fragment>
+          <NavLink to="/login" className="btn btn-danger">
+            {t("Signin")}
+          </NavLink>
+          <NavLink to="/register" className="btn btn-success ml-3">
+            {t("Signup")}
+          </NavLink>
+        </Fragment>
+      );
+    }
+    return (
+      <NavLink to="/profile" className="btn btn-danger">
+        {userLogin.taiKhoan}
+      </NavLink>
+    );
+  };
+
+  const handleChange = (value) => {
+    i18n.changeLanguage(value);
+  };
+  const { t, i18n } = useTranslation();
   return (
     <div>
       <nav className="navbar  navbar-expand-lg navbar-dark bg-dark ">
@@ -40,12 +71,21 @@ export default function Header(props) {
               </NavLink>
             </li>
           </ul>
-          <div className="ml-auto">
-            <NavLink to="/login" className="btn btn-danger">
-              Sign In
-            </NavLink>
-            <button className="btn btn-success ml-3">Sign Up</button>
+          <div className="ml-auto" style={{ marginRight: "15px" }}>
+            {renderLogin()}
           </div>
+
+          <Select
+            defaultValue="chi"
+            style={{
+              width: 120,
+            }}
+            onChange={handleChange}
+          >
+            <Option value="en">Tiếng Anh</Option>
+            <Option value="chi">Tiếng Trung</Option>
+            <Option value="vi">Tiếng Việt</Option>
+          </Select>
         </div>
       </nav>
     </div>
