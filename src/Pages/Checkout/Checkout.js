@@ -11,6 +11,8 @@ import { ThongTinDatVe } from "../../_Cores/Models/ThongTinDatVe";
 import { datVeAction } from "../../redux/Action/QuanLyDatVeAction";
 import { Tabs } from "antd";
 import { NavLink } from "react-router-dom";
+import { layThongTinNguoiDungAction } from "../../redux/Action/QuanLyNguoiDungAction";
+
 const { TabPane } = Tabs;
 
 function Checkout(props) {
@@ -222,19 +224,27 @@ export default function CheckoutTab(props) {
   );
 }
 function KetQuaDatVe(props) {
-  const { thongTinNguoiDung } = useSelector(
-    (state) => state.QuanLyNguoiDungReducer
-  );
+  const dispatch = useDispatch();
+  const { userData } = useSelector((state) => state.QuanLyNguoiDungReducer);
+  const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
+  useEffect(() => {
+    const isTwosToken = true;
+    const action = layThongTinNguoiDungAction(isTwosToken);
+    dispatch(action);
+  }, [dispatch]);
+  console.log("thongTinNguoiDung", userData);
+
   return (
     <div className="p-5">
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-col text-center w-full mb-20">
             <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-black  ">
-              Lịch Sử Đặt Vé
+              Lịch sử đặt vé của bạn
             </h1>
             <p className="lg:w-2/3 mx-auto leading-relaxed text-black">
-              Chúc các bạn xem phim vui vẻ @@
+              Xem lại danh sách các vé đã đặt và thời gian để không bõ lỡ phút
+              giây nào của phim bạn nhé!
             </p>
           </div>
           <div className="flex flex-wrap -m-2">

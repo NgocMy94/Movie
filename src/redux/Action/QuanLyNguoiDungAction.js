@@ -1,5 +1,8 @@
 import { quanLyNguoiDungService } from "../Service/QuanLyNguoiDungService";
-import { QUAN_LY_NGUOI_DUNG_DN } from "../Types/QuanLyNguoDungType";
+import {
+  QUAN_LY_NGUOI_DUNG_DN,
+  SET_THONG_TIN_ND,
+} from "../Types/QuanLyNguoDungType";
 import { history } from "../../App";
 
 export const dangNhapAction = (thongtinDangNhap) => {
@@ -19,6 +22,22 @@ export const dangNhapAction = (thongtinDangNhap) => {
       console.log("result", result);
     } catch (error) {
       console.log("error", error.response.data);
+    }
+  };
+};
+
+export const layThongTinNguoiDungAction = () => {
+  return async (dispatch) => {
+    try {
+      const result = await quanLyNguoiDungService.layThongTinNguoiDung();
+      if (result.data.statusCode === 200) {
+        dispatch({
+          type: SET_THONG_TIN_ND,
+          userData: result.data.content,
+        });
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 };

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { DOMAIN } from "../../util/setting";
+import { DOMAIN, TOKEN_ACCESS, TOKEN_CYBER } from "../../util/setting";
 import { header } from "./header";
 
 export class baseService {
@@ -12,7 +12,7 @@ export class baseService {
     });
   };
 
-  post = (url, props) => {
+  post = (url, props, model) => {
     const { thongTinDatVe, isTwosToken } = props || {};
     return axios({
       url: `${DOMAIN}/${url}`,

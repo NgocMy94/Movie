@@ -1,1 +1,2 @@
 export const QUAN_LY_NGUOI_DUNG_DN = "QUAN_LY_NGUOI_DUNG_DN";
+export const SET_THONG_TIN_ND = "SET_THONG_TIN_ND";
