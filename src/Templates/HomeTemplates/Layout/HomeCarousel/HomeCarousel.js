@@ -23,8 +23,6 @@ export default function HomeCarousel(props) {
     dispatch(getCarouselActions());
   }, []);
 
-  console.log("arrImg", arrImg);
-
   const renderImg = () => {
     return arrImg.map((item, index) => {
       return (

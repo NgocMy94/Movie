@@ -1,38 +1,33 @@
 import axios from "axios";
-import { DOMAIN, TOKEN_ACCESS, TOKEN_CYBER } from "../../util/setting";
+import { DOMAIN } from "../../util/setting";
+import { header } from "./header";
 
 export class baseService {
-  //put json về phía backend
   put = (url, model) => {
     return axios({
       url: `${DOMAIN}/${url}`,
       method: "PUT",
       data: model,
-      headers: {
-        TokenCybersoft: TOKEN_CYBER,
-      },
+      headers: header(),
     });
   };
 
-  post = (url, model) => {
+  post = (url, props) => {
+    const { thongTinDatVe, isTwosToken } = props || {};
     return axios({
       url: `${DOMAIN}/${url}`,
       method: "POST",
-      data: model,
-      headers: {
-        TokenCybersoft: TOKEN_CYBER,
-        Authorization: "Bearer " + localStorage.getItem(TOKEN_ACCESS),
-      },
+      data: thongTinDatVe,
+      headers: header(isTwosToken),
     });
   };
 
   get = (url) => {
+    console.log("url", url);
     return axios({
       url: `${DOMAIN}/${url}`,
       method: "GET",
-      headers: {
-        TokenCybersoft: TOKEN_CYBER,
-      },
+      headers: header(),
     });
   };
 
@@ -40,9 +35,7 @@ export class baseService {
     return axios({
       url: `${DOMAIN}/${url}`,
       method: "DELETE",
-      headers: {
-        TokenCybersoft: TOKEN_CYBER,
-      },
+      headers: header(),
     });
   };
 }

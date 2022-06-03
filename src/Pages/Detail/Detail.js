@@ -1,25 +1,25 @@
 import React, { useEffect } from "react";
 import "./Detail.css";
 import "../../assets/styles/Circel.scss";
-import { Radio, Space, Tabs } from "antd";
-import { useState } from "react";
+import { Tabs } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { layThongTinLichChieuAction } from "../../redux/Action/QuanLyRapAction";
 import moment from "moment";
-import { NavLink } from "react-router-dom";
+import { TAB_POSITION_LEFT } from "../../util/constant";
+import { isEmpty } from "lodash";
+import RenderContent from "./components/RenderContent";
 
 const { TabPane } = Tabs;
 
 export default function Detail(props) {
   const filmDetail = useSelector((state) => state.QuanLyPhimReducer.filmDetail);
-  console.log({ filmDetail });
-  const [tabPosition, setTabPosition] = useState("left");
+
+  const tabPosition = TAB_POSITION_LEFT;
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     let { id } = props.match.params;
-
     dispatch(layThongTinLichChieuAction(id));
   }, []);
 
@@ -57,69 +57,31 @@ export default function Detail(props) {
         <Tabs defaultActiveKey="1" centered>
           <TabPane tab="Lịch Chiếu" key="1">
             <Tabs tabPosition={tabPosition}>
-              {filmDetail.heThongRapChieu?.map((htr, index) => {
-                return (
-                  <TabPane
-                    tab={
-                      <div className="flex flex-row items-center justify-center">
-                        {" "}
-                        <img
-                          src={htr.logo}
-                          style={{
-                            width: "50px",
-                            height: "50px",
-                            //   display: "block",
-                            //   margin: "auto",
-                          }}
-                        />
-                        <h1 className="text-1xl mt-3">{htr.tenHeThongRap}</h1>
-                      </div>
-                    }
-                    key={index}
-                  >
-                    {htr.cumRapChieu?.map((cumRap, index) => {
-                      return (
-                        <div className="mt-5" key={index}>
-                          <div className="flex flex-row">
-                            <img
-                              style={{ width: "60px", height: "60px" }}
-                              src={cumRap.hinhAnh}
-                              alt=""
-                            />
-                            <div className="ml-2">
-                              <p
-                                style={{
-                                  fontSize: 20,
-                                  fontWeight: "bold",
-                                  lineHeight: 1,
-                                }}
-                              >
-                                {cumRap.tenCumRap}
-                              </p>
-                              <p style={{ marginTop: 0 }}>{cumRap.diaChi}</p>
-                            </div>
-                          </div>
-                          <div className="thong-tin-lich-chieu grid grid-cols-4">
-                            {cumRap.lichChieuPhim?.map((lichChieu, index) => {
-                              return (
-                                <NavLink
-                                  to={`/checkout/${lichChieu.maLichChieu}`}
-                                  className="col-span-1 text-green-700 font-bold"
-                                  key={index}
-                                >
-                                  {moment(lichChieu.ngayChieuGioChieu).format(
-                                    "hh:mm A"
-                                  )}
-                                </NavLink>
-                              );
-                            })}
-                          </div>
+              {!isEmpty(filmDetail?.heThongRapChieu) &&
+                filmDetail.heThongRapChieu?.map((htr, index) => {
+                  return (
+                    <TabPane
+                      tab={
+                        <div className="flex flex-row items-center justify-center">
+                          {" "}
+                          <img
+                            src={htr.logo}
+                            style={{
+                              width: "50px",
+                              height: "50px",
+                              //   display: "block",
+                              //   margin: "auto",
+                            }}
+                          />
+                          <h1 className="text-1xl mt-3">{htr.tenHeThongRap}</h1>
                         </div>
-                      );
-                    })}
-                  </TabPane>
-                );
-              })}
+                      }
+                      key={index}
+                    >
+                      <RenderContent htr={htr} />
+                    </TabPane>
+                  );
+                })}
             </Tabs>
           </TabPane>
           <TabPane tab="Thông Tin" key="2">

@@ -29,8 +29,6 @@ export default function Register() {
 
     onSubmit: (values) => {
       console.log(values);
-      // const action = dangKyAction(values);
-      // dispatch(action);
     },
   });
   return (

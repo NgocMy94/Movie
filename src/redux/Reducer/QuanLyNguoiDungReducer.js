@@ -8,6 +8,7 @@ if (localStorage.getItem(USER_LOGIN)) {
 
 const stateDefault = {
   userLogin: user,
+  thongTinNguoiDung: {},
 };
 
 export const QuanLyNguoiDungReducer = (state = stateDefault, action) => {

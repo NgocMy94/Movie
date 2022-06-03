@@ -1,8 +1,3 @@
-export class ThongTinLichChieu {
-  thongTinPhim = new ThongTinPhim();
-  danhSachGhe = [];
-}
-
 export class ThongTinPhim {
   maLichChieu = "";
   tenCumRap = "";
@@ -22,4 +17,8 @@ export class Ghe {
   daDat = "";
   maRap = "";
   taiKhoanNguoiDat = "";
+}
+export class ThongTinLichChieu {
+  thongTinPhim = new ThongTinPhim();
+  danhSachGhe = [];
 }
