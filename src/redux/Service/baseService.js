@@ -1,5 +1,5 @@
 import axios from "axios";
-import { DOMAIN, TOKEN_ACCESS, TOKEN_CYBER } from "../../util/setting";
+import { DOMAIN } from "../../util/setting";
 import { header } from "./header";
 
 export class baseService {
@@ -12,12 +12,11 @@ export class baseService {
     });
   };
 
-  post = (url, props, model) => {
-    const { thongTinDatVe, isTwosToken } = props || {};
+  post = (url, model, isTwosToken) => {
     return axios({
       url: `${DOMAIN}/${url}`,
       method: "POST",
-      data: thongTinDatVe,
+      data: model,
       headers: header(isTwosToken),
     });
   };

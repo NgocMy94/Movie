@@ -169,10 +169,8 @@ function Checkout(props) {
                 const thongTinDatVe = new ThongTinDatVe();
                 thongTinDatVe.maLichChieu = props.match.params.id;
                 thongTinDatVe.danhSachVe = danhSachGheDangDat;
-                const isTwosToken = true;
-                console.log(thongTinDatVe);
 
-                dispatch(datVeAction({ thongTinDatVe, isTwosToken }));
+                dispatch(datVeAction(thongTinDatVe));
               }}
               className="btn btn-success mt-5 w-100"
             >
@@ -228,11 +226,9 @@ function KetQuaDatVe(props) {
   const { userData } = useSelector((state) => state.QuanLyNguoiDungReducer);
   const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
   useEffect(() => {
-    const isTwosToken = true;
-    const action = layThongTinNguoiDungAction(isTwosToken);
+    const action = layThongTinNguoiDungAction();
     dispatch(action);
   }, [dispatch]);
-  console.log("thongTinNguoiDung", userData);
 
   return (
     <div className="p-5">
