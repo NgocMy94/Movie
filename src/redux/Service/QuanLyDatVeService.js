@@ -13,7 +13,8 @@ export class QuanLyDatVeService extends baseService {
   };
 
   datVe = (thongTinDatVe = new ThongTinDatVe()) => {
-    return this.post(`/api/QuanLyDatVe/DatVe`, thongTinDatVe);
+    const isTwosToken = true;
+    return this.post(`/api/QuanLyDatVe/DatVe`, thongTinDatVe, isTwosToken);
   };
 }
 export const quanLyDatVeService = new QuanLyDatVeService();

@@ -12,18 +12,17 @@ export class baseService {
     });
   };
 
-  post = (url, props, model) => {
-    const { thongTinDatVe, isTwosToken } = props || {};
+  post = (url, model, isTwosToken) => {
     return axios({
       url: `${DOMAIN}/${url}`,
       method: "POST",
-      data: thongTinDatVe,
+      data: model,
       headers: header(isTwosToken),
     });
   };
 
   get = (url) => {
-    console.log("url", url);
+    // console.log("url", url);
     return axios({
       url: `${DOMAIN}/${url}`,
       method: "GET",

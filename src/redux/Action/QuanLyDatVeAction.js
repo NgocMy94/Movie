@@ -2,6 +2,9 @@ import { ThongTinDatVe } from "../../_Cores/Models/ThongTinDatVe";
 import { quanLyDatVeService } from "../Service/QuanLyDatVeService";
 import { SET_CHI_PHONG_VE } from "../Types/QuanLyDatVeType";
 import Swal from "sweetalert2";
+import { DOMAIN } from "../../util/setting";
+import axios from "axios";
+import { header } from "../Service/header.js";
 
 export const layChiTietPhongVeAction = (maLichChieu) => {
   return async (dispatch) => {

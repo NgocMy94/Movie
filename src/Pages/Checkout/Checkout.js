@@ -12,7 +12,8 @@ import { datVeAction } from "../../redux/Action/QuanLyDatVeAction";
 import { Tabs } from "antd";
 import { NavLink } from "react-router-dom";
 import { layThongTinNguoiDungAction } from "../../redux/Action/QuanLyNguoiDungAction";
-
+import Swal from "sweetalert2";
+import _ from "lodash";
 const { TabPane } = Tabs;
 
 function Checkout(props) {
@@ -169,10 +170,18 @@ function Checkout(props) {
                 const thongTinDatVe = new ThongTinDatVe();
                 thongTinDatVe.maLichChieu = props.match.params.id;
                 thongTinDatVe.danhSachVe = danhSachGheDangDat;
-                const isTwosToken = true;
-                console.log(thongTinDatVe);
 
-                dispatch(datVeAction({ thongTinDatVe, isTwosToken }));
+                if (_.isEmpty(danhSachGheDangDat)) {
+                  Swal.fire({
+                    title: "Chọn tối thiểu 1 ghế để đặt vé",
+                    icon: "error",
+                    confirmButtonText: "Đã hiểu",
+                  });
+                } else {
+                  dispatch(datVeAction(thongTinDatVe));
+                }
+
+                console.log(thongTinDatVe);
               }}
               className="btn btn-success mt-5 w-100"
             >
@@ -185,9 +194,7 @@ function Checkout(props) {
   );
 }
 
-const callblack = (key) => {
-  console.log(key);
-};
+const callblack = (key) => {};
 
 export default function CheckoutTab(props) {
   const { userLogin } = useSelector((state) => state.QuanLyDatVeReducer);
@@ -226,12 +233,12 @@ export default function CheckoutTab(props) {
 function KetQuaDatVe(props) {
   const dispatch = useDispatch();
   const { userData } = useSelector((state) => state.QuanLyNguoiDungReducer);
-  const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
+  // const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
   useEffect(() => {
     const isTwosToken = true;
-    const action = layThongTinNguoiDungAction(isTwosToken);
+    const action = layThongTinNguoiDungAction(userData, isTwosToken);
     dispatch(action);
-  }, [dispatch]);
+  }, []);
   console.log("thongTinNguoiDung", userData);
 
   return (
