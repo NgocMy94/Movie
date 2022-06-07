@@ -1,14 +1,14 @@
-import { TOKEN_ACCESS, TOKEN_CYBER } from "../../util/setting";
-
+import { TOKEN_CYBER, USER_LOGIN } from "../../util/setting";
+const user = JSON.parse(localStorage.getItem(USER_LOGIN));
 export const header = (isTwosToken) => {
-  console.log("object", isTwosToken);
   if (isTwosToken) {
     return {
       TokenCybersoft: TOKEN_CYBER,
-      Authorization: `Bearer ${localStorage.getItem(TOKEN_ACCESS)}`,
+      Authorization: `Bearer ${user?.accessToken}`,
+    };
+  } else {
+    return {
+      TokenCybersoft: TOKEN_CYBER,
     };
   }
-  return {
-    TokenCybersoft: TOKEN_CYBER,
-  };
 };

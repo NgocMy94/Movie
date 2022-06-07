@@ -24,6 +24,7 @@ export const QuanLyNguoiDungReducer = (state = stateDefault, action) => {
       return { ...state, userLogin: thongtinDangNhap };
     }
     case SET_THONG_TIN_ND: {
+      console.log("5");
       state.userData = action.userData;
       return { ...state };
     }

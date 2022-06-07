@@ -1,5 +1,5 @@
 import axios from "axios";
-import { DOMAIN, TOKEN_ACCESS, TOKEN_CYBER } from "../../util/setting";
+import { DOMAIN } from "../../util/setting";
 import { header } from "./header";
 
 export class baseService {
@@ -22,7 +22,6 @@ export class baseService {
   };
 
   get = (url) => {
-    // console.log("url", url);
     return axios({
       url: `${DOMAIN}/${url}`,
       method: "GET",

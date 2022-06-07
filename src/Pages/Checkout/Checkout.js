@@ -46,8 +46,9 @@ function Checkout(props) {
         classDaDat = "gheDangDat";
       }
       return (
-        <Fragment>
+        <Fragment key={index}>
           <button
+            key={index}
             onClick={() => {
               dispatch({
                 type: DAT_VE,
@@ -56,7 +57,6 @@ function Checkout(props) {
             }}
             disabled={ghe.daDat}
             className={`ghe ${classGheVip} ${classDaDat} ${classGheDangDat} text-center`}
-            key={index}
           >
             {ghe.daDat ? <CloseOutlined /> : ghe.stt}
           </button>
@@ -235,10 +235,8 @@ function KetQuaDatVe(props) {
   const { userData } = useSelector((state) => state.QuanLyNguoiDungReducer);
   // const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
   useEffect(() => {
-    const isTwosToken = true;
-    const action = layThongTinNguoiDungAction(userData, isTwosToken);
-    dispatch(action);
-  }, []);
+    dispatch(layThongTinNguoiDungAction());
+  }, [dispatch]);
   console.log("thongTinNguoiDung", userData);
 
   return (

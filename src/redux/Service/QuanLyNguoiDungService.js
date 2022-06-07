@@ -2,11 +2,14 @@ import { baseService } from "./baseService";
 
 export class QuanLyNguoiDungService extends baseService {
   dangNhap = (thongTinDangNhap) => {
-    return this.post(`/api/QuanLyNguoiDung/DangNhap`, thongTinDangNhap);
+    const url = `/api/QuanLyNguoiDung/DangNhap`;
+    return this.post(url, thongTinDangNhap);
   };
+
   layThongTinNguoiDung = () => {
+    const url = "api/QuanLyNguoiDung/ThongTinTaiKhoan";
     const isTwosToken = true;
-    return this.post("/api/QuanLyNguoiDung/ThongTinTaiKhoan", isTwosToken);
+    return this.post(url, {}, isTwosToken);
   };
 }
 export const quanLyNguoiDungService = new QuanLyNguoiDungService();
