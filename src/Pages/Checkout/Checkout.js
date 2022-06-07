@@ -231,6 +231,7 @@ export default function CheckoutTab(props) {
   );
 }
 function KetQuaDatVe(props) {
+  const { cumRap } = props || {};
   const dispatch = useDispatch();
   // const { userData } = useSelector((state) => state.QuanLyNguoiDungReducer);
   const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
@@ -245,7 +246,6 @@ function KetQuaDatVe(props) {
   }, []);
 
   const { thongTinPhim } = chiTietPhongVe;
-  console.log({ chiTietPhongVe });
   // useEffect(() => {
   //   dispatch(layThongTinNguoiDungAction());
   // }, [dispatch]);
@@ -257,12 +257,12 @@ function KetQuaDatVe(props) {
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-col text-center w-full mb-20">
             <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-black  ">
-              Lịch sử đặt vé của bạn
+              Kết Quả Đặt Vé Của Bạn
             </h1>
-            <p className="lg:w-2/3 mx-auto leading-relaxed text-black">
+            <h3 className="lg:w-2/3 mx-auto leading-relaxed text-black text-xl">
               Xem lại danh sách các vé đã đặt và thời gian để không bõ lỡ phút
               giây nào của phim bạn nhé!
-            </p>
+            </h3>
           </div>
           <div className="grid grid-cols-3 container w-auto  ">
             <div className="mt-0">
@@ -299,6 +299,19 @@ function KetQuaDatVe(props) {
                   .toLocaleString()}
                 đ
               </h3>
+              <div className="mt-3">
+                <button
+                  onClick={() => {
+                    props.history.goBack();
+                  }}
+                  className="btn btn-success mr-3 "
+                >
+                  Mua Thêm Vé Phim Này
+                </button>
+                <NavLink className="btn btn-success " to="/home">
+                  Trở Về Trang Home
+                </NavLink>
+              </div>
             </div>
           </div>
         </div>
