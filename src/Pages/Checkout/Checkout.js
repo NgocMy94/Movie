@@ -308,9 +308,9 @@ function KetQuaDatVe(props) {
                 >
                   Mua Thêm Vé Phim Này
                 </button>
-                <NavLink className="btn btn-success " to="/home">
-                  Trở Về Trang Home
-                </NavLink>
+                <a className="btn btn-success  " href="/home">
+                  Trở Về Trang Chủ
+                </a>
               </div>
             </div>
           </div>
