@@ -232,15 +232,27 @@ export default function CheckoutTab(props) {
 }
 function KetQuaDatVe(props) {
   const dispatch = useDispatch();
-  const { userData } = useSelector((state) => state.QuanLyNguoiDungReducer);
-  // const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
+  // const { userData } = useSelector((state) => state.QuanLyNguoiDungReducer);
+  const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
+  console.log(userLogin);
+  const { chiTietPhongVe, danhSachGheDangDat } = useSelector(
+    (state) => state.QuanLyDatVeReducer
+  );
   useEffect(() => {
-    dispatch(layThongTinNguoiDungAction());
-  }, [dispatch]);
-  console.log("thongTinNguoiDung", userData);
+    //Gọi
+    const action = layChiTietPhongVeAction(props.match.params.id);
+    dispatch(action);
+  }, []);
+
+  const { thongTinPhim } = chiTietPhongVe;
+  console.log({ chiTietPhongVe });
+  // useEffect(() => {
+  //   dispatch(layThongTinNguoiDungAction());
+  // }, [dispatch]);
+  // console.log("thongTinNguoiDung", userData);
 
   return (
-    <div className="p-5">
+    <div className="p-0">
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-col text-center w-full mb-20">
@@ -252,141 +264,41 @@ function KetQuaDatVe(props) {
               giây nào của phim bạn nhé!
             </p>
           </div>
-          <div className="flex flex-wrap -m-2">
-            <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
-              <div className="h-full flex items-center border-gray-200 border p-4 rounded-lg">
-                <img
-                  alt="team"
-                  className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
-                  src="https://picsum.photos/200/300"
-                />
-                <div className="flex-grow">
-                  <h2 className="text-gray-900 title-font font-medium">
-                    Lật Mặt
-                  </h2>
-                  <p className="text-black">Rạp cgv</p>
-                </div>
-              </div>
+          <div className="grid grid-cols-3 container w-auto  ">
+            <div className="mt-0">
+              <img src={thongTinPhim.hinhAnh} alt="" />
             </div>
-            <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
-              <div className="h-full flex items-center border-gray-200 border p-4 rounded-lg">
-                <img
-                  alt="team"
-                  className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
-                  src="https://dummyimage.com/84x84"
-                />
-                <div className="flex-grow">
-                  <h2 className="text-gray-900 title-font font-medium">
-                    Henry Letham
-                  </h2>
-                  <p className="text-gray-500">CTO</p>
-                </div>
+            <div>
+              <h1 className="text-2xl">{thongTinPhim.tenPhim}</h1>
+              <h3 className="text-xl ">
+                Địa điểm : {thongTinPhim.tenCumRap} - {thongTinPhim.tenRap}
+              </h3>
+              <h3 className="text-xl ">
+                Ngày Chiếu: {thongTinPhim.ngayChieu} - {thongTinPhim.gioChieu}
+              </h3>
+              <div>
+                <span className="text-xl text-black mr-3">Ghế : </span>
+                {sortBy(danhSachGheDangDat, ["stt"]).map((gheDD, index) => {
+                  return (
+                    <span key={index} className="text-xl text-black px-1">
+                      {gheDD.stt}
+                    </span>
+                  );
+                })}
               </div>
-            </div>
-            <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
-              <div className="h-full flex items-center border-gray-200 border p-4 rounded-lg">
-                <img
-                  alt="team"
-                  className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
-                  src="https://dummyimage.com/88x88"
-                />
-                <div className="flex-grow">
-                  <h2 className="text-gray-900 title-font font-medium">
-                    Oskar Blinde
-                  </h2>
-                  <p className="text-gray-500">Founder</p>
-                </div>
-              </div>
-            </div>
-            <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
-              <div className="h-full flex items-center border-gray-200 border p-4 rounded-lg">
-                <img
-                  alt="team"
-                  className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
-                  src="https://dummyimage.com/90x90"
-                />
-                <div className="flex-grow">
-                  <h2 className="text-gray-900 title-font font-medium">
-                    John Doe
-                  </h2>
-                  <p className="text-gray-500">DevOps</p>
-                </div>
-              </div>
-            </div>
-            <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
-              <div className="h-full flex items-center border-gray-200 border p-4 rounded-lg">
-                <img
-                  alt="team"
-                  className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
-                  src="https://dummyimage.com/94x94"
-                />
-                <div className="flex-grow">
-                  <h2 className="text-gray-900 title-font font-medium">
-                    Martin Eden
-                  </h2>
-                  <p className="text-gray-500">Software Engineer</p>
-                </div>
-              </div>
-            </div>
-            <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
-              <div className="h-full flex items-center border-gray-200 border p-4 rounded-lg">
-                <img
-                  alt="team"
-                  className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
-                  src="https://dummyimage.com/98x98"
-                />
-                <div className="flex-grow">
-                  <h2 className="text-gray-900 title-font font-medium">
-                    Boris Kitua
-                  </h2>
-                  <p className="text-gray-500">UX Researcher</p>
-                </div>
-              </div>
-            </div>
-            <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
-              <div className="h-full flex items-center border-gray-200 border p-4 rounded-lg">
-                <img
-                  alt="team"
-                  className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
-                  src="https://dummyimage.com/100x90"
-                />
-                <div className="flex-grow">
-                  <h2 className="text-gray-900 title-font font-medium">
-                    Atticus Finch
-                  </h2>
-                  <p className="text-gray-500">QA Engineer</p>
-                </div>
-              </div>
-            </div>
-            <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
-              <div className="h-full flex items-center border-gray-200 border p-4 rounded-lg">
-                <img
-                  alt="team"
-                  className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
-                  src="https://dummyimage.com/104x94"
-                />
-                <div className="flex-grow">
-                  <h2 className="text-gray-900 title-font font-medium">
-                    Alper Kamu
-                  </h2>
-                  <p className="text-gray-500">System</p>
-                </div>
-              </div>
-            </div>
-            <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
-              <div className="h-full flex items-center border-gray-200 border p-4 rounded-lg">
-                <img
-                  alt="team"
-                  className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
-                  src="https://dummyimage.com/108x98"
-                />
-                <div className="flex-grow">
-                  <h2 className="text-gray-900 title-font font-medium">
-                    Rodrigo Monchi
-                  </h2>
-                  <p className="text-gray-500">Product Manager</p>
-                </div>
-              </div>
+              <h1 className="text-2xl py-1">Thông Tin Người Đặt Vé : </h1>
+              <h3 className="text-xl">Họ Và Tên : {userLogin.hoTen}</h3>
+              <h3 className="text-xl">Số Điện Thoại : {userLogin.soDT}</h3>
+              <h3 className="text-xl">Email: {userLogin.email}</h3>
+              <h3 className="text-xl ">
+                Tổng Tiền :
+                {danhSachGheDangDat
+                  .reduce((tongTien, ghe, index) => {
+                    return (tongTien += ghe.giaVe);
+                  }, 0)
+                  .toLocaleString()}
+                đ
+              </h3>
             </div>
           </div>
         </div>

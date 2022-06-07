@@ -32,8 +32,6 @@ export const layThongTinNguoiDungAction = () => {
           type: SET_THONG_TIN_ND,
           userData: result.data.content,
         });
-      } else {
-        console.log("hihih");
       }
     } catch (error) {
       console.log("error hahaa", error);

@@ -33,7 +33,7 @@ export const datVeAction = (thongTinDatVe = new ThongTinDatVe()) => {
         await Swal.fire({
           title: "Đặt vé thành công",
           html: "Chúc bạn xem phim vui vẻ nhé!",
-          timer: 3000,
+          timer: 10000,
           timerProgressBar: true,
           willClose: () => {
             clearInterval(timerInterval);
