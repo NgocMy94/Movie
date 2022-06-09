@@ -11,10 +11,7 @@ export default function Film_Flip(props) {
           <div className="flip-card-front">
             <div
               style={{
-                backgroundPosition: "center",
-                backgroundSize: "100%",
-                background: `url(${item.hinhAnh})`,
-                backgroundRepeat: "no-repeat",
+                background: `url(${item.hinhAnh}) center center / cover`,
               }}
             >
               <img
