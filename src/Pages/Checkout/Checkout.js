@@ -278,10 +278,10 @@ function KetQuaDatVe(props) {
               </h3>
               <div>
                 <span className="text-xl text-black mr-3">Ghế : </span>
-                {sortBy(danhSachGheDangDat, ["stt"]).map((gheDD, index) => {
+                {sortBy(danhSachGheDangDat, ["tenGhe"]).map((gheDD, index) => {
                   return (
                     <span key={index} className="text-xl text-black px-1">
-                      {gheDD.stt}
+                      {gheDD.tenGhe}
                     </span>
                   );
                 })}
